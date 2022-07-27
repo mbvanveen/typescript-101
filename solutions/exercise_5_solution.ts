@@ -4,7 +4,7 @@
  * ---------------------------------------------------------------------------------------------------- 
 */
 
-type _UserDataType = {
+type UserDataType = {
     name: string;
     age: number;
     phone?: string;
@@ -12,16 +12,16 @@ type _UserDataType = {
     email?: string;
 };
 
-type _OptionallyOverrideUserDataType = Partial<_UserDataType>;
+type OptionalOverrideUserDataType = Partial<UserDataType>;
 
-function _optionallyOverrideUserData(userData: _UserDataType, overrideData: _OptionallyOverrideUserDataType): _UserDataType {
+function optionalOverrideUserData(userData: UserDataType, overrideData: OptionalOverrideUserDataType): UserDataType {
     return {
         ...userData,
         ...overrideData
     }
 }
 
-_optionallyOverrideUserData(
+console.log(optionalOverrideUserData(
     {
         name: 'John',
         age: 50,
@@ -32,18 +32,18 @@ _optionallyOverrideUserData(
         email: 'johnsnewemail@email.com',
         city: 'Newark'
     }
-);
+));
 
-type _RequiredUserDataType = Required<_UserDataType>;
+type RequiredUserDataType = Required<UserDataType>;
 
-function _overrideAllUserData(userData: _UserDataType, overrideData: _RequiredUserDataType): _UserDataType {
+function overrideAllUserData(userData: UserDataType, overrideData: RequiredUserDataType): UserDataType {
     return {
         ...userData,
         ...overrideData
     }
 }
 
-_overrideAllUserData(
+console.log(overrideAllUserData(
     {
         name: 'John',
         age: 50,
@@ -57,22 +57,26 @@ _overrideAllUserData(
         age: 51,
         phone: '007'
     }
-);
+));
 
-type _UserEmailAndNameType = Pick<_UserDataType, 'email' | 'name'>;
+type UserEmailAndNameType = Pick<UserDataType, 'email' | 'name'>;
 
-function _getUserEmailAndName(userData: _UserDataType): _UserEmailAndNameType {
+function getUserEmailAndName(userData: UserDataType): UserEmailAndNameType {
     return {
         email: userData.email,
         name: userData.name
     }
 }
 
-type _ReadOnlyUserDataType = Readonly<_UserDataType>;
+console.log(getUserEmailAndName({
+    name: 'John Snow',
+    email: 'john@email.com'
+}));
 
-type _UsersByNameType = Record<string, _UserDataType>;
+type ReadOnlyUserDataType = Readonly<UserDataType>;
+type UsersByNameType = Record<string, UserDataType>;
 
-function _mapUsersByName(users: _UserDataType[]): _UsersByNameType {
+function mapUsersByName(users: UserDataType[]): UsersByNameType {
     return users.reduce((acc, curr) => {
         return {
             ...acc,
@@ -81,10 +85,27 @@ function _mapUsersByName(users: _UserDataType[]): _UsersByNameType {
     }, {});
 }
 
-// 🤔
-type _UsersByNameExcludingCityType = Record<string, Omit<_UserDataType, 'city'>>;
+console.log(mapUsersByName([
+    {
+        name: 'John Snow',
+        age: 50,
+        phone: '07354325235',
+        email: 'john@email.com',
+        city: 'Westeros'
+    },
+    {
+        email: 'mylittleemail@email.com',
+        city: 'Newark',
+        name: 'Johnny',
+        age: 51,
+        phone: '007'
+    }
+]));
 
-function _mapUsersByNameExcludingCity(users: _UserDataType[]): _UsersByNameExcludingCityType {
+// 🤔
+type UsersByNameExcludingCityType = Record<string, Omit<UserDataType, 'city'>>;
+
+function mapUsersByNameExcludingCity(users: UserDataType[]): UsersByNameExcludingCityType {
     return users.reduce((acc, curr) => {
         const { city, ...rest } = curr;
 
@@ -94,3 +115,20 @@ function _mapUsersByNameExcludingCity(users: _UserDataType[]): _UsersByNameExclu
         };
     }, {});
 }
+
+console.log(mapUsersByNameExcludingCity([
+    {
+        name: 'John Snow',
+        age: 50,
+        phone: '07354325235',
+        email: 'john@email.com',
+        city: 'Westeros'
+    },
+    {
+        email: 'mylittleemail@email.com',
+        city: 'Newark',
+        name: 'Johnny',
+        age: 51,
+        phone: '007'
+    }
+]));
