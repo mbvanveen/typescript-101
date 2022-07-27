@@ -64,15 +64,13 @@ function isAnimal(animalOrPerson: AnimalType | PersonType): animalOrPerson is An
     return Boolean((animalOrPerson as AnimalType).ability);
 }
 
-function petOrFire(animalOrPerson: AnimalType | PersonType): void {
+function petOrFire(animalOrPerson: AnimalType | PersonType): string | void {
     if (isPerson(animalOrPerson)) {
-        console.log(`Person ${animalOrPerson.name} with occupation "${animalOrPerson.occupation.toLowerCase()}" has been fired.`)
+        return `Person ${animalOrPerson.name} with occupation "${animalOrPerson.occupation}" has been fired.`;
     } else if (isAnimal(animalOrPerson)) {
-        if (isAnimal(animalOrPerson)) {
-            console.log(`Animal ${animalOrPerson.name} has been pet and will now ${animalOrPerson.ability}.`)
-        }
+        return `Animal ${animalOrPerson.name} has been pet and will now ${animalOrPerson.ability}.`;
     }
 }
 
-petOrFire(person); // John should be fired.
-petOrFire(animal); // We don't fire animals, we pet them!
+console.log(petOrFire(person)); // John should be fired.
+console.log(petOrFire(animal)); // We don't fire animals, we pet them!
