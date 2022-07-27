@@ -4,7 +4,7 @@
  * ----------------------------------------------------------------------------------------------------  
 */
 
-const _person2 = {
+const person = {
     name: 'John',
     age: 67,
     children: [
@@ -19,7 +19,7 @@ const _person2 = {
     }
 }
 
-const _animal2 = {
+const animal = {
     name: 'Felix',
     age: 10,
     children: [
@@ -34,45 +34,45 @@ const _animal2 = {
     }
 }
 
-type _AddressType3 = {
+type AddressType = {
     houseNumber: number;
     street: string;
     zipCode: string;
 }
 
-type _AnimalType2 = {
+type AnimalType = {
     name: string;
     age: number;
     ability: string;
     children: string[];
-    address: _AddressType3;
+    address: AddressType;
 };
 
-type _PersonType2 = {
+type PersonType = {
     name: string;
     age: number;
     children: string[];
     occupation: string;
-    address: _AddressType3;
+    address: AddressType;
 };
 
-function _isPerson(animalOrPerson: _AnimalType2 | _PersonType2): animalOrPerson is _PersonType2 {
-    return Boolean((animalOrPerson as _PersonType2).occupation);
+function isPerson(animalOrPerson: AnimalType | PersonType): animalOrPerson is PersonType {
+    return Boolean((animalOrPerson as PersonType).occupation);
 }
 
-function _isAnimal2(animalOrPerson: _AnimalType2 | _PersonType2): animalOrPerson is _AnimalType2 {
-    return Boolean((animalOrPerson as _AnimalType2).ability);
+function isAnimal(animalOrPerson: AnimalType | PersonType): animalOrPerson is AnimalType {
+    return Boolean((animalOrPerson as AnimalType).ability);
 }
 
-function _petOrFire(animalOrPerson: _AnimalType2 | _PersonType2): void {
-    if (_isPerson(animalOrPerson)) {
+function petOrFire(animalOrPerson: AnimalType | PersonType): void {
+    if (isPerson(animalOrPerson)) {
         console.log(`Person ${animalOrPerson.name} with occupation ${animalOrPerson.occupation} has been fired.`)
-    } else if (_isAnimal2(animalOrPerson)) {
-        if (_isAnimal2(animalOrPerson)) {
+    } else if (isAnimal(animalOrPerson)) {
+        if (isAnimal(animalOrPerson)) {
             console.log(`Animal ${animalOrPerson.name} has been pet and will now ${animalOrPerson.ability}.`)
         }
     }
 }
 
-_petOrFire(_person2); // John should be fired.
-_petOrFire(_animal2); // We don't fire animals, we pet them!
+petOrFire(person); // John should be fired.
+petOrFire(animal); // We don't fire animals, we pet them!
