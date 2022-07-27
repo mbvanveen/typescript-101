@@ -14,19 +14,19 @@ function capitalize(text: string): string {
     return `${text.slice(0, 1).toUpperCase()}${text.slice(1)}`;
 }
 
-function determineEnvironment(env: Environment) {
+function getReadableEnvironment(env: Environment): string {
     if (!Environment[env]) {
-        console.log('No matching environment found!');
+        return 'No matching environment found!';
     } else {
-        console.log(capitalize(Environment[env]));
+        return capitalize(Environment[env]);
     }
 }
 
-const _exerciseData = [Environment.acceptance, Environment.testing, Environment.production];
+const exerciseData = [Environment.acceptance, Environment.testing, Environment.production];
 
-determineEnvironment(_exerciseData[0]);
-determineEnvironment(_exerciseData[1]);
-determineEnvironment(_exerciseData[2]);
+getReadableEnvironment(exerciseData[0]);
+getReadableEnvironment(exerciseData[1]);
+getReadableEnvironment(exerciseData[2]);
 
 /*
  * We have some resistor data (color and value).
