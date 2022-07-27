@@ -1,19 +1,18 @@
 /*
  * ----------------------------------------------------------------------------------------------------
  * Exercise 2/5: Function return types
- * Correctly type the return type of the functions without using the any or unknown keywords.
+ * Type the return type of the functions without using the any or unknown keywords.
  * ----------------------------------------------------------------------------------------------------
  */
 
-function _sayHello(name: string): void {
+function sayHello(name: string): void {
     console.log(`Hello ${name}`);
 }
 
-_sayHello('John Hammond');
+sayHello('John Hammond');
 
-
-const _explorer = {
-    name: 'John Hammond',
+const person = {
+    name: 'John',
     age: 67,
     children: [
         'Dirk',
@@ -26,27 +25,39 @@ const _explorer = {
     }
 }
 
-function _getAge(): number {
-    return _explorer.age;
+function getAge(): number {
+    return person.age;
 }
 
-function _getName(): string {
-    return _explorer.name;
+function getName(): string {
+    return person.name;
 }
 
-function _getChildren(): string[] {
-    return _explorer.children;
+function getChildren(): string[] {
+    return person.children;
 }
 
-type _AddressType = {
+type AddressType = {
     houseNumber: number;
     street: string;
     zipCode: string;
 };
 
-function _getAddress(): _AddressType {
-    return _explorer.address;
+function getAddress(): AddressType {
+    return person.address;
 }
+
+function getAgeAsync(): Promise<number> {
+    return Promise.resolve(getAge());
+}
+
+console.log(getName());
+console.log(getChildren());
+console.log(getAddress());
+(async () => {
+    const age = await getAgeAsync();
+    console.log(age);
+})();
 
 /*
  * Write a function that (optionally) takes a name and returns either:
@@ -54,6 +65,24 @@ function _getAddress(): _AddressType {
  * "There's some cookies left for you, but please leave some for me." - If there's no name
  */
 
-function _replyOnCanIHaveACookie(name?: string): string {
+function replyOnCanIHaveACookie(name?: string): string {
     return `There's some cookies left for ${name || 'you'}, but please leave some for me.`;
 }
+
+console.log(replyOnCanIHaveACookie());
+console.log(replyOnCanIHaveACookie('Hank'));
+
+// Bonusss for those that are blazing fast
+
+type IHaveNoIdeaType = Record<string, unknown>;
+
+async function getDitto(): Promise<IHaveNoIdeaType> {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto', { method: 'GET' });
+    
+    return response.json();
+}
+
+(async () => {
+    const ditto = await getDitto();
+    console.log(ditto);
+})();
