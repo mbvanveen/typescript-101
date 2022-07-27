@@ -61,10 +61,10 @@ console.log(overrideAllUserData(
 
 type UserEmailAndNameType = Pick<UserDataType, 'email' | 'name'>;
 
-function getUserEmailAndName(userData: UserDataType): UserEmailAndNameType {
+function getUserEmailAndName(userData: OptionalOverrideUserDataType): UserEmailAndNameType {
     return {
-        email: userData.email,
-        name: userData.name
+        email: userData.email || '',
+        name: userData.name || ''
     }
 }
 
