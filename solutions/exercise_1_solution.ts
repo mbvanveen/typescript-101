@@ -55,7 +55,7 @@ console.log(constructHouse([
 ]));
 
 function callPerson(firstName: string, lastName?: string): string {
-    return `Now calling: ${firstName}${lastName ? lastName : ''}. Please stand by.`;
+    return `Now calling: ${firstName}${lastName ? ` ${lastName}` : ''}. Please stand by.`;
 }
 
 console.log(callPerson('Steve-o'));
