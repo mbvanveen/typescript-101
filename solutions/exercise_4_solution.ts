@@ -24,9 +24,9 @@ function getReadableEnvironment(env: Environment): string {
 
 const exerciseData = [Environment.acceptance, Environment.testing, Environment.production];
 
-getReadableEnvironment(exerciseData[0]);
-getReadableEnvironment(exerciseData[1]);
-getReadableEnvironment(exerciseData[2]);
+console.log(getReadableEnvironment(exerciseData[0]));
+console.log(getReadableEnvironment(exerciseData[1]));
+console.log(getReadableEnvironment(exerciseData[2]));
 
 /*
  * We have some resistor data (color and value).
@@ -73,4 +73,13 @@ function getResistanceValue(name: ResistorColorName): ResistorColorValue {
     return ResistorColorValue[name];
 }
 
-getResistanceValue(ResistorColorName.BLACK);
+console.log(ResistorColorName.BLACK, getResistanceValue(ResistorColorName.BLACK));
+console.log(ResistorColorName.BROWN, getResistanceValue(ResistorColorName.BROWN));
+console.log(ResistorColorName.RED, getResistanceValue(ResistorColorName.RED));
+console.log(ResistorColorName.ORANGE, getResistanceValue(ResistorColorName.ORANGE));
+console.log(ResistorColorName.YELLOW, getResistanceValue(ResistorColorName.YELLOW));
+console.log(ResistorColorName.GREEN, getResistanceValue(ResistorColorName.GREEN));
+console.log(ResistorColorName.BLUE, getResistanceValue(ResistorColorName.BLUE));
+console.log(ResistorColorName.VIOLET, getResistanceValue(ResistorColorName.VIOLET));
+console.log(ResistorColorName.GREY, getResistanceValue(ResistorColorName.GREY));
+console.log(ResistorColorName.WHITE, getResistanceValue(ResistorColorName.WHITE));
